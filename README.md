@@ -1,3 +1,3 @@
 # conky-hot-babe
 ## Warning NSFW!
-Hot-babe for conky
+[hot-babe](https://github.com/Polynomial-C/hot-babe) for conky.
