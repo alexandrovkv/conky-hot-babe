@@ -3,3 +3,5 @@
 [hot-babe](https://github.com/Polynomial-C/hot-babe) CPU monitor for conky.
 
 The images used for conky-hot-babe are copyrighted by Bruno Bellamy.
+
+You can find more themes for hot-babe [here](https://git.anduin.net/ltning/hot-babe-themes).
