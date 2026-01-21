@@ -3,25 +3,41 @@
 ]]--
 
 
-require 'cairo'
+local cairo = require('cairo')
 
 local status, cairo_xlib = pcall(require, 'cairo_xlib')
 if not status then
     cairo_xlib = setmetatable({}, { __index = _G })
 end
 
+local settings = require('settings')
+
 
 
 cur_dir = debug.getinfo(1, 'S').source:match[[^@?(.*[\/])[^\/]-$]]
-layers_dir = cur_dir .. "hb01/"
-layers = {
-    layers_dir .. "hb01_4.png",
-    layers_dir .. "hb01_3.png",
-    layers_dir .. "hb01_2.png",
-    layers_dir .. "hb01_1.png",
-    layers_dir .. "hb01_0.png"
-}
+themes_dir = cur_dir .. "themes/"
+layers = {}
 
+
+
+local function load_theme(theme)
+    local theme_dir = themes_dir .. theme
+    local descr_path = theme_dir .. "/descr"
+    local file = io.open(descr_path, "r")
+    if not file then return end
+
+    local num = tonumber(file:read("*line"))
+
+    for i = 1, num do
+        line = file:read("*line")
+        if line ~= "" then
+            local path = theme_dir .. "/" .. line
+            table.insert(layers, path)
+        end
+    end
+
+    file:close()
+end
 
 
 local function get_cpu_load()
@@ -78,6 +94,11 @@ local function draw_hot_babe(cr)
     end
 end
 
+
+
+function conky_init()
+    load_theme(settings.theme)
+end
 
 
 function conky_main()
