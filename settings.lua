@@ -4,6 +4,6 @@
 
 
 return {
-    theme = "maid"
+    theme = "hb01"
 }
 
