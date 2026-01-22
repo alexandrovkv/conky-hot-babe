@@ -26,7 +26,7 @@ local function load_theme(theme)
     local file = io.open(descr_path, "r")
     if not file then return end
 
-    local num = tonumber(file:read("*line"))
+    local num = tonumber(file:read("*line")) or 0
 
     for i = 1, num do
         line = file:read("*line")
